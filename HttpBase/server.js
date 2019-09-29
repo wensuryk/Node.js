@@ -1,4 +1,4 @@
-const http = require('http');
+const http = require('http'),fs = require('fs');
 
 const PORT = 81;
 
@@ -35,6 +35,13 @@ const server = http.createServer((req ,res) => {
         res.write("</html>");
         res.end();
     }
+    else if (url === "/index.html") {
+        fs.readFile('./index.html');
+                 
+                response.write(html);  
+                response.end();  
+               
+    }
     else{
         res.setHeader("Content-type", "text/html");
         //res.setHeader("Content-type", "application/json");
@@ -55,5 +62,5 @@ const server = http.createServer((req ,res) => {
 
 server.listen(PORT);
 
-console.log(http.STATUS_CODES);
-console.log(http.METHODS);
+// console.log(http.STATUS_CODES);
+// console.log(http.METHODS);
