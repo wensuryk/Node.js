@@ -1,4 +1,4 @@
-const http = require('http'),fs = require('fs');
+const http = require('http');
 
 const PORT = 81;
 
@@ -35,12 +35,14 @@ const server = http.createServer((req ,res) => {
         res.write("</html>");
         res.end();
     }
-    else if (url === "/index.html") {
-        fs.readFile('./index.html');
-                 
-                response.write(html);  
-                response.end();  
-               
+    else if (url === "/person") {
+        res.setHeader("Content-type", "application/json");
+        let person = {
+            name: "Billy",
+            lastName: "Dog",
+            age: "22"
+        }
+        res.end(JSON.stringify(person.name));  
     }
     else{
         res.setHeader("Content-type", "text/html");
